@@ -3,6 +3,7 @@ import React from "react";
 import Sound from "./sound";
 import Turntable from "./turntable";
 import Radio from "./radio";
+import Podcast from "./podcast";
 
 export default class App extends React.Component {
 
@@ -12,6 +13,7 @@ export default class App extends React.Component {
         <Sound />
         <Turntable />
         <Radio />
+        <Podcast />
       </div>
     );
   }
