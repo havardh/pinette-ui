@@ -1,8 +1,10 @@
 var exec = require('promised-exec');
 var Promise = require('promise');
+var Sound = require('simple-mplayer');
 
 var folder = __dirname + '/../../media';
 
+var player;
 
 function init(baseUrl, server) {
   register(baseUrl, server);
@@ -11,17 +13,67 @@ function init(baseUrl, server) {
 function register(baseUrl, server) {
 
   server.get(baseUrl + '/pod/list', listFiles);
-  server.get(baseUrl + '/pod/start', playFile);
-  server.get(baseUrl + '/pod/status', getStatus);
+  server.get(baseUrl + '/pod/start/:file', playFile);
+  server.get(baseUrl + '/pod/resume', resume);
   server.get(baseUrl + '/pod/stop', stop);
   server.get(baseUrl + '/pod/pause', pause);
 
 }
 
-function playFile(req, res) {}
-function getStatus(req, res) {}
-function stop(req, res) {}
-function pause(req, res) {}
+function playFile(req, res) {
+  if (player) {
+    res.json({error: "Already playing"});
+    res.end();
+  } else {
+    if (req.params.file) {
+      console.log("Playing: ", folder + '/' + req.params.file);
+      player = new Sound(folder + '/' + req.params.file);
+      player.play();
+      res.json({status: 'Playing'});
+      res.end();
+    } else {
+      res.json({error: 'No file was provided in request'});
+      res.end();
+    }
+  }
+}
+
+function resume(req, res) {
+  if (!player) {
+    res.json({error: 'Not initialized'});
+    res.end();
+    return;
+  }
+
+  player.resume();
+  res.json({status: 'Playing'});
+  res.end();
+}
+
+function pause(req, res) {
+  if (!player) {
+    res.json({error: 'Not initialized'});
+    res.end();
+  } else {
+    player.pause();
+    res.json({status: 'Paused'});
+    res.end();
+  }
+}
+
+function stop(req, res) {
+  if (!player) {
+    res.json({error: 'Not initialized'});
+    res.end();
+    return;
+  }
+
+  player.stop();
+
+  res.json({status: 'Stopped'});
+  res.end();
+  player = null;
+}
 
 function listFiles(req, res) {
 
