@@ -91,8 +91,8 @@ function listFiles(req, res) {
 function decorateWithFileInfo(file) {
   return info(file).then(result => {
     return {
-      fileName: file,
       duration: result
+      fileName: file.substr(file.lastIndexOf("/")+1),
     };
   });
 }
