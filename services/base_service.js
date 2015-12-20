@@ -6,8 +6,7 @@ require('superagent-as-promised')(superagent);
 
 export default function request(url) {
 
-
-  return superagent.get(url);
+  return superagent.get(url).then(response => response.body);
 
   return new Promise((resolve, reject) => {
     options = _.defaults(options || {}, {
@@ -20,7 +19,6 @@ export default function request(url) {
       options.data = JSON.stringify(options.data);
     }
 
-    console.log(options.method);
     let requestObject = superagent[options.method](options.url);
     requestObject = requestObject.send(options.data);
 
