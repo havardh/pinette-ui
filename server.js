@@ -2,7 +2,7 @@ var express = require('express');
 var server = express();
 var exec = require('child_process').exec;
 
-const path = '/home/pi/bin';
+const path = process.env.BIN_DIR || '../mock';
 const apiPath = '/api';
 
 var pod = require('./pod');
