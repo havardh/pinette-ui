@@ -2,7 +2,7 @@ var exec = require('promised-exec');
 var Promise = require('promise');
 var Sound = require('simple-mplayer');
 
-var folder = __dirname + '/../../media';
+var folder = process.env.MEDIA_DIR || __dirname + '/../../media';
 
 var player;
 
