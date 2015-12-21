@@ -7,7 +7,7 @@ const apiPath = '/api';
 
 var pod = require('./pod');
 
-server.use(express.static(__dirname + '../client'));
+server.use(express.static(process.cwd() + '/client'));
 
 server.all("*", function(req, res, next) {
   console.log('GET:', req.url);
