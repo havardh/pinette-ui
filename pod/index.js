@@ -99,7 +99,7 @@ function decorateWithFileInfo(file) {
 
 function info(file) {
   var filter = "grep Duration | awk '{ print $2 }'";
-  return exec("ffmpeg -i " + file + " 2>&1 | " + filter)
+  return exec("avprobe " + file + " 2>&1 | " + filter)
         .then(result => result.substr(0, result.length - 2));
 }
 
