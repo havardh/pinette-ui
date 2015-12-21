@@ -28,7 +28,7 @@ function playFile(req, res) {
     if (req.params.file) {
       console.log("Playing: ", folder + '/' + req.params.file);
       player = new Sound(folder + '/' + req.params.file);
-      player.play();
+      player.play({'ao': 'alsa:device=hw=0.0'});
       res.json({status: 'Playing'});
       res.end();
     } else {
