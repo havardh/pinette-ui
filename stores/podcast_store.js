@@ -7,42 +7,73 @@ import {
   STOP
 } from "../actions/podcast_actions";
 
-export class PodcastStore extends BaseStore {
+export function podcast(state = {status: "Off"}, action) {
+  console.log(state, action);
+  switch (action.type) {
+    case RECEIVED_FILES:
+      return {
+        ...state,
+        files: files(state.files, action)
+      };
 
-  constructor() {
-    super();
+    case STOP:
+    case PLAYING_FILE:
+      return {
+        ...state,
+        status: status(state.status, action),
+        nowPlaying: playing(state.nowPlaying, action)
+      };
 
-    this.setState({nowPlaying: {}});
-  }
+    case RESUME:
+    case PAUSE:
+      return {
+        ...state,
+        status: status(state.status, action)
+      };
 
-  handleEvent(action) {
-    switch (action.actionType) {
-      case RECEIVED_FILES:
-        this.setField("files", action.files);
-        return true;
-
-      case PLAYING_FILE:
-        this.setField("status", "Playing");
-        this.setField("nowPlaying", action.file);
-        return true;
-
-      case RESUME:
-        this.setField("status", "Playing");
-        return true;
-
-      case PAUSE:
-        this.setField("status", "Paused");
-        return true;
-
-      case STOP:
-        this.setField("nowPlaying", {});
-        this.setField("status", "Stopped");
-        return true;
-
-      default:
-        return false;
-    }
+    default:
+      return state;
   }
 }
 
-export default new PodcastStore;
+function playing(state = {}, {type, file}) {
+  switch (type) {
+    case PLAYING_FILE:
+      return file;
+    case STOP:
+      return {};
+    default:
+      return state;
+  }
+
+}
+
+function status(state = "Off", {type}) {
+  switch (type) {
+    case PLAYING_FILE:
+      return "Playing";
+
+    case RESUME:
+      return "Playing";
+      return true;
+
+    case PAUSE:
+      return "Paused";
+
+    case STOP:
+      return "Stopped";
+
+    default:
+      return state;
+  }
+}
+
+function files(state = [], {type, files}) {
+
+  switch (type) {
+    case RECEIVED_FILES:
+      return files;
+    default:
+      return state;
+  }
+}

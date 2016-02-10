@@ -1,50 +1,51 @@
+import _ from "lodash";
 import React from "react";
 
 import PodcastActionCreator from "../actions/podcast_action_creator";
 import PodcastList from "./podcast_list";
 import PodcastStore from "../stores/podcast_store";
 
-function getStoreState() {
-  return PodcastStore.getState();
-}
-
 export default class Podcast extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = getStoreState();
   }
 
   componentDidMount() {
-    PodcastActionCreator.enterPodcast();
+    const {store} = this.props;
 
-    PodcastStore.addChangeListener(this.onStoreChanged.bind(this));
+    PodcastActionCreator.fetchPodcasts()(store.dispatch.bind(store));
+
+    this.unsubscribe = store.subscribe(() => this.onStoreChanged());
   }
 
   componentWillUnmount() {
-    PodcastStore.removeListener(this.onStoreChanged.bind(this));
+    this.unsubscribe();
   }
 
   onStoreChanged() {
-    this.setState(getStoreState(), () => {
-      console.log(this.state);
-    });
+    const {store} = this.props;
+    this.setState(store.getState());
   }
 
   play() {
-    PodcastActionCreator.resume();
+    const {store} = this.props;
+    PodcastActionCreator.resume()(store.dispatch.bind(store));
   }
 
   pause() {
-    PodcastActionCreator.pause();
+    const {store} = this.props;
+    PodcastActionCreator.pause()(store.dispatch.bind(store));
   }
 
   stop() {
-    PodcastActionCreator.stop();
+    const {store} = this.props;
+    PodcastActionCreator.stop()(store.dispatch.bind(store));
   }
 
   onFileClicked(file) {
-    PodcastActionCreator.start(file);
+    const {store} = this.props;
+    PodcastActionCreator.start(file)(store.dispatch.bind(store));
   }
 
   render() {
@@ -52,15 +53,15 @@ export default class Podcast extends React.Component {
       <div>
         <h2>Podcast</h2>
         <div>
-          {this.state.nowPlaying.fileName}
-          <span> ({this.state.nowPlaying.duration})</span>
-          <span> {this.state.status}</span>
+          {_.get(this.state, "nowPlaying.fileName")}
+          <span> ({_.get(this.state, "nowPlaying.duration")})</span>
+          <span> {_.get(this.state, "status")}</span>
         </div>
         <button onClick={this.play.bind(this)}>Play</button>
-        <button onClick={this.pause}>Pause</button>
-        <button onClick={this.stop}>Stop</button>
+        <button onClick={this.pause.bind(this)}>Pause</button>
+        <button onClick={this.stop.bind(this)}>Stop</button>
 
-        <PodcastList files={this.state.files} onFileClicked={this.onFileClicked}/>
+        <PodcastList files={_.get(this.state, "files")} onFileClicked={this.onFileClicked.bind(this)}/>
       </div>
     );
   };

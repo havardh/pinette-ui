@@ -6,14 +6,15 @@ import Radio from "./radio";
 import Podcast from "./podcast";
 
 export default class App extends React.Component {
-
   render() {
+    const {store} = this.props;
+
     return (
       <div>
         <Sound />
         <Turntable />
         <Radio />
-        <Podcast />
+        <Podcast store={store} />
       </div>
     );
   }

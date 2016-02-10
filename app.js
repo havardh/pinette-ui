@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import {createStore} from "redux";
 
-import PodcastStore from "./stores/podcast_store";
+import {podcast} from "./stores/podcast_store";
 
-PodcastStore.register();
-
+const store = createStore(podcast);
 
 import App from "./components/app.js";
 
 ReactDOM.render(
-  <App />,
+  <App store={store}/>,
   document.getElementById('app')
-);
+)

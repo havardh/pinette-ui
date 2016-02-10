@@ -9,62 +9,93 @@ import {
   STOP
 } from "./podcast_actions";
 
+function receivePodcasts(files) {
+  return {
+    type: RECEIVED_FILES,
+    files
+  }
+}
+
+function playPodcast(file) {
+  return {
+    type: PLAYING_FILE,
+    file
+  };
+}
+
+function resumePodcast() {
+  return {
+    type: RESUME
+  };
+}
+
+function pausePodcast() {
+  return {
+    type: PAUSE
+  };
+}
+
+function stopPodcast() {
+  return {
+    type: STOP
+  };
+}
+
 export default {
-  enterPodcast() {
-    PodcastService.list().then(files => {
-      Dispatcher.dispatch({
-        actionType: RECEIVED_FILES,
-        files
+
+  fetchPodcasts() {
+    return dispatch => {
+      PodcastService.list().then(files => {
+        dispatch(receivePodcasts(files));
       });
-    });
+    };
   },
 
   start(file) {
-    PodcastService.start(file.fileName).then(response => {
-      if (response.status) {
-        Dispatcher.dispatch({
-          actionType: PLAYING_FILE,
-          file
-        });
-      } else {
-        console.log(response);
-      }
-    });
+    return dispatch => {
+      PodcastService.start(file.fileName).then(response => {
+        if (response.status) {
+          dispatch(playPodcast(file));
+        } else {
+          console.log(response);
+        }
+      });
+    };
   },
 
   resume() {
-    PodcastService.resume().then(response => {
-      if (response.status) {
-        Dispatcher.dispatch({
-          actionType: RESUME
-        });
-      } else {
-        console.log(response);
-      }
-    });
+    return dispatch => {
+      PodcastService.resume().then(response => {
+        if (response.status) {
+          dispatch(resumePodcast());
+        } else {
+          console.log(response);
+        }
+      });
+    }
   },
 
   pause() {
-    PodcastService.pause().then(response => {
-      if (response.status) {
-        Dispatcher.dispatch({
-          actionType: PAUSE
-        });
-      } else {
-        console.log(response);
-      }
-    });
+    return dispatch => {
+      PodcastService.pause().then(response => {
+        if (response.status) {
+          dispatch(pausePodcast());
+        } else {
+          console.log(response);
+        }
+      });
+    };
   },
 
   stop() {
-    PodcastService.stop().then(response => {
-      if (response.status) {
-        Dispatcher.dispatch({
-          actionType: STOP
-        });
-      } else {
-        console.log(response);
-      }
-    });
+    return dispatch => {
+      PodcastService.stop().then(response => {
+        if (response.status) {
+          dispatch(stopPodcast());
+        } else {
+          console.log(response);
+        }
+      });
+    };
   }
 };
