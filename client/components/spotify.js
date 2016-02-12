@@ -18,10 +18,12 @@ export default class Spotify extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="tile green">
         <h2>Spotify</h2>
-        <button onClick={this.on.bind(this)}>På</button>
-        <button onClick={this.off.bind(this)}>Av</button>
+        <div className="button-row">
+          <button onClick={this.on.bind(this)}>På</button>
+          <button onClick={this.off.bind(this)}>Av</button>
+        </div>
       </div>
     );
   }

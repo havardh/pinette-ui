@@ -9,10 +9,12 @@ export default class Turntable extends React.Component {
 
   render() {
     return (
-      <div>
-       	<h2>Platespiller</h2>
-       	<button onClick={this.on}>På</button>
-       	<button onClick={this.off}>Av</button>
+      <div className="tile black">
+        <h2>Platespiller</h2>
+        <div className="button-row">
+          <button onClick={this.on}>På</button>
+          <button onClick={this.off}>Av</button>
+        </div>
       </div>
     );
   };

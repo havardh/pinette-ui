@@ -11,12 +11,19 @@ export default class Sound extends React.Component {
 
   render() {
     return (
-      <div>
-	      <h2>Sound</h2>
-	      <button onClick={this.mute}>Mute</button>
-	      <button onClick={this.unmute}>Unmute</button>
-	      <button onClick={this.up}>+</button>
-	      <button onClick={this.down}>-</button>
+      <div className="tile red">
+        <h2>Sound</h2>
+
+        <div>
+          <input type="range"></input>
+        </div>
+
+        <div className="button-row">
+          <button onClick={this.mute}>Av</button>
+          <button onClick={this.unmute}>På</button>
+          <button onClick={this.up}>+</button>
+          <button onClick={this.down}>-</button>
+        </div>
       </div>
     );
   }

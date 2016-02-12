@@ -1,0 +1,36 @@
+
+.red { background-color: #B74A36; }
+.yellow { background-color: #D19900; }
+.green { background-color: #85A857; }
+.blue { background-color: #60A49F; }
+.black { background-color: #111111; }
+
+.tile-container {
+  width: 100%;
+
+  .tile {
+    position: relative;
+    float: left;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid ;
+
+    width: 200px;
+    min-height: 150px;
+
+    h2 {
+      margin: 0 0 20px 0;
+      padding: 0;
+      color: white;
+    }
+
+    .button-row {
+      position: absolute;
+      bottom: 10px;
+
+      button {
+        margin-right: 2px
+      }
+    }
+  }
+}

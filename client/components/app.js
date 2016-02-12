@@ -11,7 +11,7 @@ export default class App extends React.Component {
     const {store} = this.props;
 
     return (
-      <div>
+      <div className="tile-container">
         <Sound />
         <Turntable />
         <Radio />

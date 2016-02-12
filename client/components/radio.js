@@ -14,13 +14,15 @@ export default class Radio extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="tile yellow">
         <h2>Radio</h2>
-        <button onClick={this.p1}>P1</button>
-        <button onClick={this.p2}>P2</button>
-        <button onClick={this.p3}>P3</button>
-        <button onClick={this.p13}>P13</button>
-        <button onClick={this.off}>Av</button>
+        <div className="button-row">
+          <button onClick={this.p1}>P1</button>
+          <button onClick={this.p2}>P2</button>
+          <button onClick={this.p3}>P3</button>
+          <button onClick={this.p13}>P13</button>
+          <button onClick={this.off}>Av</button>
+        </div>
       </div>
     );
   }

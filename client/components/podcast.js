@@ -50,16 +50,18 @@ export default class Podcast extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="tile blue">
         <h2>Podcast</h2>
         <div>
-          {_.get(this.state, "nowPlaying.fileName")}
+        {_.get(this.state, "nowPlaying.fileName")}
           <span> ({_.get(this.state, "nowPlaying.duration")})</span>
           <span> {_.get(this.state, "status")}</span>
         </div>
-        <button onClick={this.play.bind(this)}>Play</button>
-        <button onClick={this.pause.bind(this)}>Pause</button>
-        <button onClick={this.stop.bind(this)}>Stop</button>
+        <div className="button-row">
+          <button onClick={this.play.bind(this)}>Play</button>
+          <button onClick={this.pause.bind(this)}>Pause</button>
+          <button onClick={this.stop.bind(this)}>Stopp</button>
+        </div>
 
         <PodcastList files={_.get(this.state, "files")} onFileClicked={this.onFileClicked.bind(this)}/>
       </div>
