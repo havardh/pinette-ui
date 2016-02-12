@@ -91,14 +91,15 @@ function listFiles(req, res) {
 function decorateWithFileInfo(file) {
   return info(file).then(result => {
     return {
-      duration: result
       fileName: file.substr(file.lastIndexOf("/")+1),
+      duration: result || "00:00:00"
     };
   });
 }
 
 function info(file) {
   var filter = "grep Duration | awk '{ print $2 }'";
+  console.log("avprobe " + file + " 2>&1 | " + filter);
   return exec("avprobe " + file + " 2>&1 | " + filter)
         .then(result => result.substr(0, result.length - 2));
 }
