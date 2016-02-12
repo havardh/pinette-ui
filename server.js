@@ -2,6 +2,7 @@ var express = require('express');
 var server = express();
 var exec = require('child_process').exec;
 
+const port = process.env.PORT || 3003;
 const path = process.env.BIN_DIR || '../mock';
 const apiPath = '/api';
 
@@ -34,4 +35,4 @@ listPrograms(path, function (programs) {
 
 pod(apiPath, server);
 
-server.listen(80);
+server.listen(port);
