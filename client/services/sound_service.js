@@ -14,6 +14,10 @@ export default {
     return request('/api/sound/unmute');
   },
 
+  set(volume) {
+    return request("/api/sound/set?value=" + volume);
+  },
+
   volume() {
     return request('/api/sound/volume');
   },
