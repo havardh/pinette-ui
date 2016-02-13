@@ -3,9 +3,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import {createStore} from "redux";
 
-import {podcast} from "./stores/podcast_store";
+import reducers from "./reducers";
 
-const store = createStore(podcast);
+const store = createStore(reducers);
 
 import App from "./components/app.js";
 

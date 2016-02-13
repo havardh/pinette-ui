@@ -1,4 +1,3 @@
-import BaseStore from "./base_store";
 import {
   RECEIVED_FILES,
   PLAYING_FILE,
@@ -7,8 +6,7 @@ import {
   STOP
 } from "../actions/podcast_actions";
 
-export function podcast(state = {status: "Off"}, action) {
-  console.log(state, action);
+export default function podcast(state = {status: "Off"}, action) {
   switch (action.type) {
     case RECEIVED_FILES:
       return {
@@ -35,6 +33,8 @@ export function podcast(state = {status: "Off"}, action) {
       return state;
   }
 }
+
+console.log(podcast);
 
 function playing(state = {}, {type, file}) {
   switch (type) {

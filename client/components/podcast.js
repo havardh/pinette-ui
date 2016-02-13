@@ -3,7 +3,6 @@ import React from "react";
 
 import PodcastActionCreator from "../actions/podcast_action_creator";
 import PodcastList from "./podcast_list";
-import PodcastStore from "../stores/podcast_store";
 
 export default class Podcast extends React.Component {
 
@@ -25,7 +24,7 @@ export default class Podcast extends React.Component {
 
   onStoreChanged() {
     const {store} = this.props;
-    this.setState(store.getState());
+    this.setState(store.getState().podcast);
   }
 
   play() {
