@@ -25,8 +25,12 @@ listPrograms(path, function (programs) {
   programs
     .forEach(function(program) {
       server.get(program.replace(path, apiPath), function(req, res) {
-        exec(program, function(err, stdout, stderr) {
-          res.json({response: stdout});
+        let cmd = program;
+        if (req.query.value) {
+          cmd = program + " " + req.query.value;
+        }
+        exec(cmd, function(err, stdout, stderr) {
+          res.json(stdout);
           res.end();
         });
       });
