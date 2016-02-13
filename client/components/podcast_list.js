@@ -4,7 +4,6 @@ import React from "react";
 export default class PodcastList extends React.Component {
 
   render() {
-    console.log(this.props);
     return (
       <ul>
         {_.map(this.props.files, file =>
