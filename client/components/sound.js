@@ -44,7 +44,7 @@ export default class Sound extends React.Component {
         <h2>Sound</h2>
 
         <div>
-          <input type="range" min="0" max="100" step="1"
+          <input type="range" min="50" max="100" step="0.1"
             value={volume}
             onInput={this.onVolumeChange.bind(this)}>
           </input>
