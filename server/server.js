@@ -30,6 +30,9 @@ listPrograms(path, function (programs) {
           cmd = program + " " + req.query.value;
         }
         exec(cmd, function(err, stdout, stderr) {
+          if (stderr) {
+            console.log(stderr);
+          }
           res.json(stdout);
           res.end();
         });
