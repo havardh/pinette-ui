@@ -6,7 +6,9 @@ require('superagent-as-promised')(superagent);
 
 export default function request(url) {
 
-  return superagent.get(url).then(response => response.body);
+  return superagent.get(url)
+    .then(response => response.body)
+    .then(JSON.parse.bind(JSON));
 
   return new Promise((resolve, reject) => {
     options = _.defaults(options || {}, {
@@ -27,6 +29,7 @@ export default function request(url) {
       .set("Accept", "application/json")
       .endAsync()
       .then(response => resolve(response.body))
+      .then(res => JSON.parse(res))
       .catch(error => reject({
         status: error.cause.status,
         response: error.cause.response.body

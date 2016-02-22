@@ -6,13 +6,18 @@ export default class Sound extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = props.store.getState().sound;
+
+    const {store} = props;
+    this.state = store.getState().sound;
+
+    this.dispatch = store.dispatch.bind(store);
   }
 
   componentDidMount() {
     const {store} = this.props;
 
     SoundActionCreators.getVolume()(store.dispatch.bind(store));
+    //SoundActionCreators.ismute()(store.dispatch.bind(store));
 
     this.unsubscribe = store.subscribe(() => this.onStoreChanged());
   }
@@ -26,10 +31,25 @@ export default class Sound extends React.Component {
     this.setState(store.getState().sound);
   }
 
-  mute() { SoundActionCreators.call('mute'); }
-  unmute() { SoundActionCreators.call('unmute'); }
-  up() { SoundActionCreators.call('up'); }
-  down() { SoundActionCreators.call('down'); }
+  mute() {
+    const {store} = this.props;
+    SoundActionCreators.call('mute')(store.dispatch.bind(store));
+  }
+
+  unmute() {
+    const {store} = this.props;
+    SoundActionCreators.call('unmute')(store.dispatch.bind(store));
+  }
+
+  up() {
+    const {store} = this.props;
+    SoundActionCreators.up()(store.dispatch.bind(store));
+  }
+
+  down() {
+    const {store} = this.props;
+    SoundActionCreators.down()(store.dispatch.bind(store));
+  }
 
   onVolumeChange(event) {
     const {store} = this.props;
@@ -37,8 +57,11 @@ export default class Sound extends React.Component {
   }
 
   render() {
-    const {volume} = this.state;
-    console.log(volume);
+    const {
+      volume,
+      on
+    } = this.state;
+
     return (
       <div className="tile red">
         <h2>Sound</h2>
@@ -51,10 +74,10 @@ export default class Sound extends React.Component {
         </div>
 
         <div className="button-row">
-          <button onClick={this.unmute}>På</button>
-          <button onClick={this.mute}>Av</button>
-          <button onClick={this.up}>+</button>
-          <button onClick={this.down}>-</button>
+          <button onClick={this.unmute.bind(this)}>På</button>
+          <button onClick={this.mute.bind(this)}>Av</button>
+          <button onClick={this.up.bind(this)}>+</button>
+          <button onClick={this.down.bind(this)}>-</button>
         </div>
       </div>
     );
