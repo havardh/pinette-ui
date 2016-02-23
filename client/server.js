@@ -13,7 +13,7 @@ app.use(require('webpack-dev-middleware')(compiler, {
 }));
 
 app.use(require('webpack-hot-middleware')(compiler));
-app.use("/api", require('proxy-middleware')(url.parse("http://localhost:3003")));
+app.use("/api", require('proxy-middleware')(url.parse("http://localhost:3003/api")));
 
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
