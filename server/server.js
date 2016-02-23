@@ -24,7 +24,7 @@ function listPrograms(path, cb) {
 listPrograms(path, function (programs) {
   programs
     .forEach(function(program) {
-      server.get(program.replace(path, apiPath), function(req, res) {
+      server.get(program.replace(path, ""), function(req, res) {
         let cmd = program;
         if (req.query.value) {
           cmd = program + " " + req.query.value;

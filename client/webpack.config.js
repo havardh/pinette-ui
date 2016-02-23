@@ -1,10 +1,21 @@
+var path = require('path');
+var webpack = require('webpack');
+
 module.exports = {
-  entry: './app.js',
+  devtool: 'cheap-module-eval-source-map',
+  entry: [
+    'eventsource-polyfill',
+    'webpack-hot-middleware/client',
+    './app.js'
+  ],
   output: {
     filename: './build/bundle.js',
-    path: require("path").resolve('./'),
-    devtoolLineToLine: true,
+    path: path.resolve('./'),
   },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
+  ],
   module: {
     loaders: [
       {
