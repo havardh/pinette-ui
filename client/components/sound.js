@@ -1,6 +1,7 @@
 import React from "react";
 
 import SoundActionCreators from '../actions/sound_action_creators';
+import {StatusIndicator} from './status'
 
 export default class Sound extends React.Component {
 
@@ -17,7 +18,7 @@ export default class Sound extends React.Component {
     const {store} = this.props;
 
     SoundActionCreators.getVolume()(store.dispatch.bind(store));
-    //SoundActionCreators.ismute()(store.dispatch.bind(store));
+    SoundActionCreators.ismute()(store.dispatch.bind(store));
 
     this.unsubscribe = store.subscribe(() => this.onStoreChanged());
   }
@@ -57,14 +58,13 @@ export default class Sound extends React.Component {
   }
 
   render() {
-    const {
-      volume,
-      on
-    } = this.state;
+    const {volume, on} = this.state;
 
     return (
       <div className="tile red">
         <h2>Sound</h2>
+
+        <StatusIndicator on={on} />
 
         <div>
           <input type="range" min="50" max="100" step="0.1"

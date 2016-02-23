@@ -1,6 +1,7 @@
 import React from "react";
 
 import TurntableActionCreators from '../actions/turntable_action_creators';
+import {StatusIndicator} from './status'
 
 export default class Turntable extends React.Component {
 
