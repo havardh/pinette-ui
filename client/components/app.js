@@ -13,7 +13,7 @@ export default class App extends React.Component {
     return (
       <div className="tile-container">
         <Sound store={store} />
-        <Turntable />
+        <Turntable store={store} />
         <Radio />
         <Spotify />
         <Podcast store={store} />
