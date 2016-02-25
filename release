@@ -21,3 +21,7 @@ scp release.tar.gz pi@pinette.local:/home/pi/apps/pi-face-dev/
 ssh pi@pinette.local 'cd /home/pi/apps/pi-face-dev && tar -xf release.tar.gz'
 ssh pi@pinette.local 'cp -r /home/pi/apps/pi-face-dev/.build/* /home/pi/apps/pi-face-dev'
 ssh pi@pinette.local 'rm -rf /home/pi/apps/pi-face-dev/.build /home/pi/apps/pi-face-dev/release.tar.gz'
+
+pushd client
+rm 448c34a56d699c29117adc64c43affeb.woff2 89889688147bd7575d6327160d64e760.svg e18bbf611f2a2e43afc071aa2f4e1512.ttf fa2772327f55d8198301fdb8bcfc8158.woff f4769f9bdb7466be65088239c12046d1.eot
+popd
