@@ -8,6 +8,8 @@ pushd client
 npm run build
 popd
 
+mkdir -p .build/client/build
+
 cp client/build/bundle.js .build/client/build
 cp client/index.html .build/client
 cp server/build/server.js .build
