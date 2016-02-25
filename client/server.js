@@ -1,3 +1,4 @@
+var httpProxyMiddleware = require('http-proxy-middleware');
 var path = require('path');
 var url = require('url');
 var express = require('express');
@@ -13,7 +14,7 @@ app.use(require('webpack-dev-middleware')(compiler, {
 }));
 
 app.use(require('webpack-hot-middleware')(compiler));
-app.use("/api", require('proxy-middleware')(url.parse("http://localhost:3003/api")));
+app.use("/api", httpProxyMiddleware("http://localhost:3003/api/**"));
 
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
