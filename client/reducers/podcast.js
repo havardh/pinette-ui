@@ -34,8 +34,6 @@ export default function podcast(state = {status: "Off"}, action) {
   }
 }
 
-console.log(podcast);
-
 function playing(state = {}, {type, file}) {
   switch (type) {
     case PLAYING_FILE:
