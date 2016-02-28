@@ -8,7 +8,7 @@ export default function request(url) {
 
   return superagent.get(url)
     .then(response => response.body)
-    .then(JSON.parse.bind(JSON));
+    .then(res => typeof res === "string" ? JSON.parse(res) : res);
 
   return new Promise((resolve, reject) => {
     options = _.defaults(options || {}, {
