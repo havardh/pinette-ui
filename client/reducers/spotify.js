@@ -1,10 +1,10 @@
-import * as TurntableActions from '../actions/turntable_actions';
+import * as SpotifyActions from '../actions/spotify_actions';
 
 export default function turntable(state = {on: true}, {type}) {
   switch (type) {
-    case TurntableActions.ON:
+    case SpotifyActions.ON:
       return {on: true};
-    case TurntableActions.OFF:
+    case SpotifyActions.OFF:
       return {on: false};
     default:
       return state;

@@ -15,7 +15,7 @@ export default class App extends React.Component {
         <Sound store={store} />
         <Turntable store={store} />
         <Radio />
-        <Spotify />
+        <Spotify store={store} />
         <Podcast store={store} />
       </div>
     );

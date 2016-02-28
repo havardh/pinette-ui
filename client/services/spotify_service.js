@@ -4,8 +4,8 @@ export function on() {
   return request("/api/spotify/start");
 }
 
-export function ison() {
-  return request("/api/spotify/ison");
+export function status() {
+  return request("/api/spotify/status");
 }
 
 export function off() {
