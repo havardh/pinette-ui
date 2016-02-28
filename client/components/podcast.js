@@ -48,13 +48,15 @@ export default class Podcast extends React.Component {
   }
 
   render() {
+    const {files, status} = this.state || {files: []};
+
     return (
-      <div className="tile blue">
+      <div className="tile long blue">
         <h2>Podcast</h2>
         <div>
         {_.get(this.state, "nowPlaying.fileName")}
           <span> ({_.get(this.state, "nowPlaying.duration")})</span>
-          <span> {_.get(this.state, "status")}</span>
+          <span> {status}</span>
         </div>
         <div className="button-row">
           <button onClick={this.play.bind(this)}>Play</button>
@@ -62,7 +64,9 @@ export default class Podcast extends React.Component {
           <button onClick={this.stop.bind(this)}>Stopp</button>
         </div>
 
-        <PodcastList files={_.get(this.state, "files")} onFileClicked={this.onFileClicked.bind(this)}/>
+        <PodcastList
+          files={files}
+          onFileClicked={this.onFileClicked.bind(this)}/>
       </div>
     );
   };

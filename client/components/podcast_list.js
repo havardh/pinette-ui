@@ -1,15 +1,31 @@
 import React from "react";
 
 
+const PodcastLine = (props) => (
+  <li key={props.file.fileName}>
+    <a href="#"onClick={props.onClick}>
+      {props.file.fileName}
+    </a>
+    <br />
+    <span>({props.file.duration})</span>
+  </li>
+);
+
 export default class PodcastList extends React.Component {
+
+  onClick(file) {
+    this.props.onFileClicked(file);
+  }
 
   render() {
     return (
-      <ul>
+      <ul className="podcast-list">
         {_.map(this.props.files, file =>
-           <li key={file.fileName}>
-               <a href="#"onClick={this.props.onFileClicked.bind(null, file)}>{file.fileName}</a> <span>({file.duration})</span>
-           </li>
+          <PodcastLine
+            key={file.fileName}
+            file={file}
+            onClick={() => this.onClick(file)}
+          />
         )}
       </ul>
     );
