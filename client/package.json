@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "build": "NODE_ENV=production webpack -p --config webpack.prod.config.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/mocha/bin/mocha --require babel-core/register --recursive --reporter dot || true",
+    "watch": "./node_modules/mocha/bin/mocha --require babel-core/register --watch --recursive --reporter dot || true"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +18,8 @@
     "babel-preset-stage-0": "^6.3.13",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
+    "sinon": "^1.17.3",
+    "sinon-chai": "^2.8.0",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0"
   },
@@ -24,11 +27,13 @@
     "bluebird": "^3.0.6",
     "bootstrap": "^3.3.6",
     "bootstrap-loader": "^1.0.8",
+    "chai": "^3.5.0",
     "css-loader": "^0.23.1",
     "file-loader": "^0.8.5",
     "flux": "^2.1.1",
     "http-proxy-middleware": "^0.10.0",
     "lodash": "^3.10.1",
+    "mocha": "^2.4.5",
     "node-sass": "^3.4.2",
     "proxy-middleware": "^0.15.0",
     "redux": "^3.3.1",
