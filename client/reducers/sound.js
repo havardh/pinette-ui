@@ -4,8 +4,7 @@ import {
   SOUND_ACTION_UNMUTE
 } from "../actions/sound_actions";
 
-export default function sound(state = {on: false, volume: 0}, {type, volume}) {
-
+export default function sound(state = {on: false, volume: 0}, {type, volume} = {}) {
   switch (type) {
     case SOUND_ACTION_VOLUME:
       return {
