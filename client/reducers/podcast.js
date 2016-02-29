@@ -6,7 +6,7 @@ import {
   STOP
 } from "../actions/podcast_actions";
 
-export default function podcast(state = {status: "Off"}, action) {
+export default function podcast(state = {status: "Off"}, action = {}) {
   switch (action.type) {
     case RECEIVED_FILES:
       return {
@@ -34,7 +34,7 @@ export default function podcast(state = {status: "Off"}, action) {
   }
 }
 
-function playing(state = {}, {type, file}) {
+export function playing(state = {}, {type, file} = {}) {
   switch (type) {
     case PLAYING_FILE:
       return file;
@@ -43,17 +43,15 @@ function playing(state = {}, {type, file}) {
     default:
       return state;
   }
-
 }
 
-function status(state = "Off", {type}) {
+export function status(state = "Off", {type} = {}) {
   switch (type) {
     case PLAYING_FILE:
       return "Playing";
 
     case RESUME:
       return "Playing";
-      return true;
 
     case PAUSE:
       return "Paused";
@@ -66,7 +64,7 @@ function status(state = "Off", {type}) {
   }
 }
 
-function files(state = [], {type, files}) {
+export function files(state = [], {type, files} = {}) {
 
   switch (type) {
     case RECEIVED_FILES:
