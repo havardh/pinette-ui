@@ -1,6 +1,6 @@
 import React from "react";
 
-import SoundActionCreators from '../actions/sound_action_creators';
+import * as SoundActionCreators from '../actions/sound_action_creators';
 import {StatusIndicator} from './status'
 
 export default class Sound extends React.Component {
