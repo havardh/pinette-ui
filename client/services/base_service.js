@@ -4,7 +4,7 @@ import Promise from "bluebird";
 
 require('superagent-as-promised')(superagent);
 
-export default function request(url) {
+export function request(url) {
 
   return superagent.get(url)
     .then(response => response.body)
