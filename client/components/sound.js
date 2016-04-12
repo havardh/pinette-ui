@@ -74,10 +74,10 @@ export default class Sound extends React.Component {
         </div>
 
         <div className="button-row">
-          <button onClick={this.unmute.bind(this)}>På</button>
-          <button onClick={this.mute.bind(this)}>Av</button>
-          <button onClick={this.up.bind(this)}>+</button>
-          <button onClick={this.down.bind(this)}>-</button>
+          <button className="on" onClick={this.unmute.bind(this)}>På</button>
+          <button className="off" onClick={this.mute.bind(this)}>Av</button>
+          <button className="up" onClick={this.up.bind(this)}>+</button>
+          <button className="down" onClick={this.down.bind(this)}>-</button>
         </div>
       </div>
     );
