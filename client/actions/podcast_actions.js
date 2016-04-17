@@ -1,5 +1,3 @@
-export const RECEIVED_FILES = Symbol("PODCAST_RECEIVED_FILES");
-export const PLAYING_FILE = Symbol("PODCAST_PLAYING_FILE");
-export const RESUME = Symbol("PODCAST_RESUME");
-export const PAUSE = Symbol("PODCAST_PAUSE");
+export const START = Symbol("PODCAST_START");
 export const STOP = Symbol("PODCAST_STOP");
+export const SET_FILE = Symbol("PODCAST_SET_FILE");

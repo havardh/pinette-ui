@@ -1,7 +1,7 @@
 import SoundService from '../services/sound_service';
 import * as SoundActions from './sound_actions';
 
-function setVolume(volume) {
+function setVolumeAction(volume) {
   return {
     type: SoundActions.SOUND_ACTION_VOLUME,
     volume
@@ -61,7 +61,7 @@ export function ismute() {
 export function setVolume(volume) {
   return dispatch => {
     return SoundService.set(volume).then((volume) => {
-      dispatch(setVolume(volume));
+      dispatch(setVolumeAction(volume));
     });
   };
 };
@@ -69,7 +69,7 @@ export function setVolume(volume) {
 export function getVolume() {
   return dispatch => {
     return SoundService.volume().then((volume) => {
-      dispatch(setVolume(volume));
+      dispatch(setVolumeAction(volume));
     });
   };
 };

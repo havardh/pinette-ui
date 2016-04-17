@@ -2,19 +2,17 @@ import _ from "lodash";
 import React from "react";
 
 import PodcastActionCreator from "../actions/podcast_action_creator";
-import PodcastList from "./podcast_list";
+import {StatusIndicator} from './status'
 
 export default class Podcast extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {};
   }
 
   componentDidMount() {
     const {store} = this.props;
-
-    PodcastActionCreator.fetchPodcasts()(store.dispatch.bind(store));
-
     this.unsubscribe = store.subscribe(() => this.onStoreChanged());
   }
 
@@ -27,14 +25,9 @@ export default class Podcast extends React.Component {
     this.setState(store.getState().podcast);
   }
 
-  play() {
+  start() {
     const {store} = this.props;
-    PodcastActionCreator.resume()(store.dispatch.bind(store));
-  }
-
-  pause() {
-    const {store} = this.props;
-    PodcastActionCreator.pause()(store.dispatch.bind(store));
+    PodcastActionCreator.start(this.state.file)(store.dispatch.bind(store));
   }
 
   stop() {
@@ -42,31 +35,30 @@ export default class Podcast extends React.Component {
     PodcastActionCreator.stop()(store.dispatch.bind(store));
   }
 
-  onFileClicked(file) {
+  onChange({target}) {
     const {store} = this.props;
-    PodcastActionCreator.start(file)(store.dispatch.bind(store));
+    const name = target.value;
+    PodcastActionCreator.setFile(name)(store.dispatch.bind(store));
   }
 
   render() {
-    const {files, status} = this.state || {files: []};
+    const {status, file} = this.state;
 
     return (
-      <div className="tile long blue">
+      <div className="tile blue">
         <h2>Podcast</h2>
-        <div>
-        {_.get(this.state, "nowPlaying.fileName")}
-          <span> ({_.get(this.state, "nowPlaying.duration")})</span>
-          <span> {status}</span>
-        </div>
+        <StatusIndicator on={status} />
+        <br />
+
+        <input
+          value={file}
+          onChange={this.onChange.bind(this)}
+        />
+
         <div className="button-row">
-          <button onClick={this.play.bind(this)}>Play</button>
-          <button onClick={this.pause.bind(this)}>Pause</button>
+          <button onClick={this.start.bind(this)}>Play</button>
           <button onClick={this.stop.bind(this)}>Stopp</button>
         </div>
-
-        <PodcastList
-          files={files}
-          onFileClicked={this.onFileClicked.bind(this)}/>
       </div>
     );
   };

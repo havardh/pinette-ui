@@ -6,9 +6,24 @@ require('superagent-as-promised')(superagent);
 
 export function request(url) {
 
-  return superagent.get(url)
+  function fromJson(res) {
+    if (typeof res === "string" && res !== "") {
+      try {
+        return JSON.parse(res);
+      } catch (err) {
+        console.log("Could not parse '" + res + "'");
+      }
+    } else {
+      return res;
+    }
+  }
+
+  return superagent
+    .get(url)
+    .set("Content-Type", "application/json")
+    .set("Accept", "application/json")
     .then(response => response.body)
-    .then(res => typeof res === "string" ? JSON.parse(res) : res);
+    .then(fromJson);
 
   return new Promise((resolve, reject) => {
     options = _.defaults(options || {}, {
