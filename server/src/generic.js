@@ -1,19 +1,10 @@
+"use strict";
+
 var express = require('express');
-var server = express();
+var generic = express();
 var exec = require('child_process').exec;
 
-const port = process.env.PORT || 3003;
-const path = process.env.BIN_DIR || '../mock';
-const apiPath = '/api';
-
-var pod = require('./pod');
-
-server.use(express.static(process.cwd() + '/client'));
-
-server.all("*", function(req, res, next) {
-  console.log('GET:', req.url);
-  next();
-});
+const path = process.env.BIN_DIR || './mock';
 
 function listPrograms(path, cb) {
   return exec('find ' + path + ' -type f', function(err, programs, stderr) {
@@ -24,7 +15,7 @@ function listPrograms(path, cb) {
 listPrograms(path, function (programs) {
   programs
     .forEach(function(program) {
-      server.get(program.replace(path, apiPath), function(req, res) {
+      generic.get(program.replace(path, ""), function(req, res) {
         let cmd = program;
         if (req.query.value) {
           cmd = program + " " + req.query.value;
@@ -33,13 +24,11 @@ listPrograms(path, function (programs) {
           if (stderr) {
             console.log(stderr);
           }
-          res.json(stdout);
+          res.json();
           res.end();
         });
       });
     });
 });
 
-pod(apiPath, server);
-
-server.listen(port);
+module.exports = generic;
