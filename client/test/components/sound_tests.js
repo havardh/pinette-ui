@@ -30,40 +30,4 @@ describe('Sound', () => {
 
     expect(component).to.have.component(StatusIndicator);
   });
-
-  it('should trigger SoundActionCreators.up when up button is clicked', () => {
-    sinon.stub(SoundActionCreators, 'up').returns(() => {});
-    const component = TestUtils.render(<Sound store={store} />);
-
-    TestUtils.click(component, "//button[@class='up']");
-
-    expect(SoundActionCreators.up).to.have.been.called;
-  });
-
-  it('should trigger SoundActionCreators.down when down button is clicked', () => {
-    sinon.stub(SoundActionCreators, 'down').returns(() => {});
-    const component = TestUtils.render(<Sound store={store} />);
-
-    TestUtils.click(component, { xpath: "//button[@class='down']" });
-
-    expect(SoundActionCreators.down).to.have.been.called;
-  });
-
-  it("should trigger SoundActionCreators.call('unmute') when on button is clicked", () => {
-    sinon.stub(SoundActionCreators, 'call').returns(() => {});
-    const component = TestUtils.render(<Sound store={store} />);
-
-    TestUtils.clickTagByClass(component, 'on');
-
-    expect(SoundActionCreators.call).to.have.been.calledWith('unmute');
-  });
-
-  it("should trigger SoundActionCreators.call('mute') when off button is clicked", () => {
-    sinon.stub(SoundActionCreators, 'call').returns(() => {});
-    const component = TestUtils.render(<Sound store={store} />);
-
-    TestUtils.clickTagByClass(component, 'off');
-
-    expect(SoundActionCreators.call).to.have.been.calledWith('mute');
-  });
 });

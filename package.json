@@ -9,8 +9,8 @@
     "lint": "eslint .",
     "build": "webpack -p --config webpack.config.js",
     "start": "nodemon server.js --exec babel-node --presets es2015",
-    "test": "./node_modules/mocha/bin/mocha test/config/setup.js test --require babel-core/register --recursive --reporter dot || true",
-    "watch": "./node_modules/mocha/bin/mocha test/config/setup.js test --require babel-core/register --watch --recursive --reporter dot || true"
+    "test": "./node_modules/mocha/bin/mocha */test/config/setup.js */test --require babel-core/register --recursive --reporter dot",
+    "watch": "./node_modules/mocha/bin/mocha */test/config/setup.js */test --require babel-core/register --watch --recursive --reporter dot"
   },
   "dependencies": {
     "bluebird": "^3.0.6",
@@ -37,8 +37,8 @@
     "babel-preset-stage-2": "^6.5.0",
     "bootstrap": "^3.3.6",
     "bootstrap-loader": "^1.0.8",
-    "chai-have-react-component": "^1.1.0",
-    "chai-have-xpath": "^1.4.0",
+    "chai-have-react-component": "2.2.0",
+    "chai-have-xpath": "^1.4.2",
     "css-loader": "^0.23.1",
     "eslint": "^2.9.0",
     "eslint-config-airbnb": "^8.0.0",

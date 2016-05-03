@@ -3,8 +3,9 @@
 /* eslint-disable no-console, prefer-arrow-callback */
 import _ from 'lodash';
 import React from 'react';
+import TestUtils from 'react-addons-test-utils';
 
-export default _.merge({}, React.addons.TestUtils, {
+export default _.merge({}, TestUtils, {
   findRenderedDOMComponentWithCss(component, expression) {
     const domNode = component.getDOMNode ? component.getDOMNode() : component;
     return domNode.parentNode.querySelector(expression);
