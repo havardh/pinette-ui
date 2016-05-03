@@ -1,14 +1,15 @@
-import sinon from "sinon";
-import chai from "chai";
+/* eslint-env mocha */
+import sinon from 'sinon';
+import chai from 'chai';
 import TestUtils from './test_utils';
 import jsdom from 'jsdom';
-import Promise from "bluebird";
+import Promise from 'bluebird';
 
-import * as BaseService from "../../services/base_service";
+import * as BaseService from '../../src/services/base_service';
 
-import chaiHaveXpath from "chai-have-xpath";
-import chaiHaveReactComponent from "chai-have-react-component";
-import sinonChai from "sinon-chai";
+import chaiHaveXpath from 'chai-have-xpath';
+import chaiHaveReactComponent from 'chai-have-react-component';
+import sinonChai from 'sinon-chai';
 
 chai.use(chaiHaveXpath);
 chai.use(chaiHaveReactComponent);
@@ -21,7 +22,7 @@ if (typeof global.document === 'undefined') {
   global.window = global.document.defaultView;
 }
 
-beforeEach(() => sandbox.stub(BaseService, "request").returns(Promise.resolve({})));
+beforeEach(() => sandbox.stub(BaseService, 'request').returns(Promise.resolve({})));
 afterEach(() => sandbox.restore());
 
 global.chai = chai;

@@ -1,8 +1,7 @@
-import _ from "lodash";
-import React from "react";
+import React from 'react';
 
-import PodcastActionCreator from "../actions/podcast_action_creator";
-import {StatusIndicator} from './status'
+import PodcastActionCreator from '../actions/podcast_action_creator';
+import { StatusIndicator } from './status';
 
 export default class Podcast extends React.Component {
 
@@ -12,7 +11,7 @@ export default class Podcast extends React.Component {
   }
 
   componentDidMount() {
-    const {store} = this.props;
+    const { store } = this.props;
     this.unsubscribe = store.subscribe(() => this.onStoreChanged());
   }
 
@@ -21,28 +20,28 @@ export default class Podcast extends React.Component {
   }
 
   onStoreChanged() {
-    const {store} = this.props;
+    const { store } = this.props;
     this.setState(store.getState().podcast);
   }
 
-  start() {
-    const {store} = this.props;
-    PodcastActionCreator.start(this.state.file)(store.dispatch.bind(store));
-  }
-
-  stop() {
-    const {store} = this.props;
-    PodcastActionCreator.stop()(store.dispatch.bind(store));
-  }
-
-  onChange({target}) {
-    const {store} = this.props;
+  onChange({ target }) {
+    const { store } = this.props;
     const name = target.value;
     PodcastActionCreator.setFile(name)(store.dispatch.bind(store));
   }
 
+  start() {
+    const { store } = this.props;
+    PodcastActionCreator.start(this.state.file)(store.dispatch.bind(store));
+  }
+
+  stop() {
+    const { store } = this.props;
+    PodcastActionCreator.stop()(store.dispatch.bind(store));
+  }
+
   render() {
-    const {status, file} = this.state;
+    const { status, file } = this.state;
 
     return (
       <div className="tile blue">
@@ -61,5 +60,9 @@ export default class Podcast extends React.Component {
         </div>
       </div>
     );
-  };
+  }
 }
+
+Podcast.propTypes = {
+  store: React.PropTypes.object,
+};

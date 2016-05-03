@@ -6,7 +6,7 @@
   "author": "",
   "main": "app.js",
   "scripts": {
-    "lint": "eslint",
+    "lint": "eslint .",
     "build": "webpack -p --config webpack.config.js",
     "start": "nodemon server.js --exec babel-node --presets es2015",
     "test": "./node_modules/mocha/bin/mocha test/config/setup.js test --require babel-core/register --recursive --reporter dot || true",

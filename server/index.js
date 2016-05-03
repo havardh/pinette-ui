@@ -1,13 +1,11 @@
-"use strict";
+/* eslint-disable global-require */
+const webpack = require('webpack');
+const express = require('express');
+const app = express();
+const path = require('path');
+const config = require('../config');
 
-var webpack = require('webpack');
-var express = require('express');
-var app = express();
-var exec = require('child_process').exec;
-var path = require('path');
-var config = require('../config');
-
-var generic = require('./src/generic');
+const generic = require('./src/generic');
 
 const apiPath = '/api';
 
@@ -21,14 +19,14 @@ if (config.BABEL_ENV === 'development') {
   app.use(require('webpack-hot-middleware')(compiler));
 }
 
-app.all("*", function(req, res, next) {
-  console.log(`${req.method}: ${req.url}`);
+app.all('*', (req, res, next) => {
+  console.log(`${req.method}: ${req.url}`); // eslint-disable-line no-console
   next();
 });
 
 app.use(apiPath, generic);
 
-app.get("*", function(req, res) {
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 

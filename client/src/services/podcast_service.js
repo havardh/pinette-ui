@@ -1,12 +1,11 @@
-import Promise from "bluebird";
-import {request} from "./base_service";
+import { request } from './base_service';
 
 export default {
   start(file) {
-    return request("/api/podcast/start?value=" + file);
+    return request(`/api/podcast/start?value=${file}`);
   },
 
   stop() {
-    return request("/api/podcast/stop");
+    return request('/api/podcast/stop');
   },
 };
