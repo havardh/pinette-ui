@@ -1,21 +1,21 @@
-import React from "react";
+import React from 'react';
 
-import * as SpotifyActionCreators from "../actions/spotify_action_creators";
-import {StatusIndicator} from './status'
+import * as SpotifyActionCreators from '../actions/spotify_action_creators';
+import { StatusIndicator } from './status';
 
 export default class Spotify extends React.Component {
 
   constructor(props) {
     super(props);
 
-    const {store} = props;
+    const { store } = props;
     this.state = store.getState().spotify;
 
     this.dispatch = store.dispatch.bind(store);
   }
 
   componentDidMount() {
-    const {store} = this.props;
+    const { store } = this.props;
 
     SpotifyActionCreators.status()(this.dispatch);
 
@@ -27,7 +27,7 @@ export default class Spotify extends React.Component {
   }
 
   onStoreChanged() {
-    const {store} = this.props;
+    const { store } = this.props;
     this.setState(store.getState().spotify);
   }
 
@@ -35,12 +35,12 @@ export default class Spotify extends React.Component {
     SpotifyActionCreators.on()(this.dispatch);
   }
 
-  off () {
+  off() {
     SpotifyActionCreators.off()(this.dispatch);
   }
 
   render() {
-    const {on} = this.state;
+    const { on } = this.state;
 
     return (
       <div className="tile green">
@@ -55,3 +55,7 @@ export default class Spotify extends React.Component {
   }
 
 }
+
+Spotify.propTypes = {
+  store: React.PropTypes.object,
+};

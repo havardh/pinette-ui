@@ -1,7 +1,6 @@
-import {request} from "./base_service";
+import { request } from './base_service';
 
 export default {
-
   ismute() {
     return request('/api/sound/ismute');
   },
@@ -15,7 +14,7 @@ export default {
   },
 
   set(volume) {
-    return request("/api/sound/set?value=" + volume);
+    return request(`/api/sound/set?value=${volume}`);
   },
 
   volume() {
@@ -28,6 +27,5 @@ export default {
 
   down() {
     return request('/api/sound/down');
-  }
-
-}
+  },
+};

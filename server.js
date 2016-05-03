@@ -1,9 +1,8 @@
-/* eslint-disable no-var, vars-on-top */
+/* eslint-disable no-let, lets-on-top */
 require('babel-core/register');
 
-var webpack = require('webpack');
-var app = require('./server/index');
-var config = require('./config');
+const app = require('./server/index');
+const config = require('./config');
 
 app.listen(config.PORT, '0.0.0.0', err => {
   if (err) {

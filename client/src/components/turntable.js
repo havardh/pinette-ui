@@ -1,21 +1,21 @@
-import React from "react";
+import React from 'react';
 
 import TurntableActionCreators from '../actions/turntable_action_creators';
-import {StatusIndicator} from './status'
+import { StatusIndicator } from './status';
 
 export default class Turntable extends React.Component {
 
   constructor(props) {
     super(props);
 
-    const {store} = props;
+    const { store } = props;
     this.state = store.getState().turntable;
 
     this.dispatch = store.dispatch.bind(store);
   }
 
   componentDidMount() {
-    const {store} = this.props;
+    const { store } = this.props;
 
     TurntableActionCreators.status()(this.dispatch);
 
@@ -27,7 +27,7 @@ export default class Turntable extends React.Component {
   }
 
   onStoreChanged() {
-    const {store} = this.props;
+    const { store } = this.props;
     this.setState(store.getState().turntable);
   }
 
@@ -35,7 +35,7 @@ export default class Turntable extends React.Component {
   off() { TurntableActionCreators.off()(this.dispatch); }
 
   render() {
-    const {on} = this.state;
+    const { on } = this.state;
 
     return (
       <div className="tile black">
@@ -49,5 +49,9 @@ export default class Turntable extends React.Component {
         </div>
       </div>
     );
-  };
+  }
 }
+
+Turntable.propTypes = {
+  store: React.PropTypes.object,
+};

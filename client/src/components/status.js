@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export const StatusIndicator = (props) => (
   <div className="status-indicator">
@@ -7,3 +7,7 @@ export const StatusIndicator = (props) => (
       <span className="off"></span>}
   </div>
 );
+
+StatusIndicator.propTypes = {
+  on: React.PropTypes.bool,
+};

@@ -1,4 +1,4 @@
-import {request} from "./base_service";
+import { request } from './base_service';
 
 export default {
 
@@ -20,5 +20,5 @@ export default {
 
   off() {
     return request('/api/radio/stop');
-  }
-}
+  },
+};

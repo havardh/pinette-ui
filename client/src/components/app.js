@@ -1,14 +1,17 @@
-import React from "react";
+import React from 'react';
 
-import Sound from "./sound";
-import Turntable from "./turntable";
-import Radio from "./radio";
-import Spotify from "./spotify";
-import Podcast from "./podcast";
+import Sound from './sound';
+import Turntable from './turntable';
+import Radio from './radio';
+import Spotify from './spotify';
+import Podcast from './podcast';
 
+
+/* eslint-disable react/prefer-stateless-function */
 export default class App extends React.Component {
+
   render() {
-    const {store} = this.props;
+    const { store } = this.props;
 
     return (
       <div className="tile-container">
@@ -22,3 +25,7 @@ export default class App extends React.Component {
   }
 
 }
+
+App.propTypes = {
+  store: React.PropTypes.object,
+};

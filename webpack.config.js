@@ -1,9 +1,9 @@
 /* eslint-disable */
-var path = require('path');
-var webpack = require('webpack');
-var config = require('./config');
+let path = require('path');
+let webpack = require('webpack');
+let config = require('./config');
 
-var entry;
+let entry;
 if (config.BABEL_ENV === 'development') {
   entry = ['webpack-hot-middleware/client', './client/src/index.js']
 } else {
@@ -11,7 +11,7 @@ if (config.BABEL_ENV === 'development') {
 }
 
 module.exports = {
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'source-map',
   entry: entry,
   output: {
     filename: 'bundle.js',

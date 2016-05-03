@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 import RadioActionCreators from '../actions/radio_action_creators';
 
@@ -8,7 +8,7 @@ export default class Radio extends React.Component {
 
   p1() { RadioActionCreators.call('p1'); }
   p2() { RadioActionCreators.call('p2'); }
-  p2() { RadioActionCreators.call('p3'); }
+  p3() { RadioActionCreators.call('p3'); }
   p13() { RadioActionCreators.call('p13'); }
   off() { RadioActionCreators.call('off'); }
 

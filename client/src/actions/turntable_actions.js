@@ -1,2 +1,2 @@
-export const ON = "turntable/on";
-export const OFF = "turntable/off";
+export const ON = 'turntable/on';
+export const OFF = 'turntable/off';
