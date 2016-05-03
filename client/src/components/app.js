@@ -5,7 +5,7 @@ import Turntable from './turntable';
 import Radio from './radio';
 import Spotify from './spotify';
 import Podcast from './podcast';
-
+import ConfigService from '../services/config_service';
 
 /* eslint-disable react/prefer-stateless-function */
 export default class App extends React.Component {
@@ -18,10 +18,10 @@ export default class App extends React.Component {
       turntable: (<Turntable store={store} />),
       radio: (<Radio />),
       spotify: (<Spotify store={store} />),
-      podcast: (<Podcast store={store} />)
+      podcast: (<Podcast store={store} />),
     };
 
-    const active = ["spotify","sound","radio"];
+    const active = ConfigService.apps();
 
     return (
       <div className="tile-container">

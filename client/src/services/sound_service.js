@@ -27,5 +27,5 @@ export default {
 
   down() {
     return request({ url: '/api/sound/down' });
-  }
+  },
 };

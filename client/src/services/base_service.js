@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import _ from 'lodash';
 import superagent from 'superagent';
 import Promise from 'bluebird';
@@ -5,12 +6,11 @@ import Promise from 'bluebird';
 require('superagent-as-promised')(superagent);
 
 export function request(options) {
-
   return new Promise((resolve, reject) => {
     options = _.defaults(options || {}, {
       type: 'json',
       method: 'get',
-      contentType: 'application/json'
+      contentType: 'application/json',
     });
 
     if (options.hasOwnProperty('data') && typeof options.data === 'object') {
@@ -26,9 +26,6 @@ export function request(options) {
       .endAsync()
       .then(response => resolve(response.body))
       .then(res => JSON.parse(res))
-      .catch(error => reject({
-        status: error.cause.status,
-        response: error.cause.response.body
-      }))
+      .catch(error => reject(error));
   });
 }

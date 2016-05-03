@@ -20,5 +20,5 @@ export default {
 
   off() {
     return request({ url: '/api/radio/stop' });
-  }
+  },
 };

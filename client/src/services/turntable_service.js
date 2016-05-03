@@ -12,5 +12,5 @@ export default {
 
   off() {
     return request({ url: '/api/turntable/stop' });
-  }
+  },
 };
