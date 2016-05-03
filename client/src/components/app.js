@@ -13,13 +13,19 @@ export default class App extends React.Component {
   render() {
     const { store } = this.props;
 
+    const components = {
+      sound: (<Sound store={store} />),
+      turntable: (<Turntable store={store} />),
+      radio: (<Radio />),
+      spotify: (<Spotify store={store} />),
+      podcast: (<Podcast store={store} />)
+    };
+
+    const active = ["spotify","sound","radio"];
+
     return (
       <div className="tile-container">
-        <Sound store={store} />
-        <Turntable store={store} />
-        <Radio />
-        <Spotify store={store} />
-        <Podcast store={store} />
+        {active.map(key => components[key])}
       </div>
     );
   }
