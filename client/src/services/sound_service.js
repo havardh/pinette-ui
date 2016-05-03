@@ -2,30 +2,30 @@ import { request } from './base_service';
 
 export default {
   ismute() {
-    return request('/api/sound/ismute');
+    return request({ url: '/api/sound/ismute' });
   },
 
   mute() {
-    return request('/api/sound/mute');
+    return request({ url: '/api/sound/mute' });
   },
 
   unmute() {
-    return request('/api/sound/unmute');
+    return request({ url: '/api/sound/unmute' });
   },
 
   set(volume) {
-    return request(`/api/sound/set?value=${volume}`);
+    return request({ url: `/api/sound/set?value=${volume}` });
   },
 
   volume() {
-    return request('/api/sound/volume');
+    return request({ url: '/api/sound/volume' });
   },
 
   up() {
-    return request('/api/sound/up');
+    return request({ url: '/api/sound/up' });
   },
 
   down() {
-    return request('/api/sound/down');
-  },
+    return request({ url: '/api/sound/down' });
+  }
 };

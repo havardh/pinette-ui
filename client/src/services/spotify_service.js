@@ -1,13 +1,13 @@
 import { request } from './base_service';
 
 export function on() {
-  return request('/api/spotify/start');
+  return request({ url: '/api/spotify/start' });
 }
 
 export function status() {
-  return request('/api/spotify/status');
+  return request({ url: '/api/spotify/status' });
 }
 
 export function off() {
-  return request('/api/spotify/stop');
+  return request({ url: '/api/spotify/stop' });
 }

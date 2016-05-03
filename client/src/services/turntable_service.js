@@ -3,14 +3,14 @@ import { request } from './base_service';
 export default {
 
   status() {
-    return request('/api/turntable/status');
+    return request({ url: '/api/turntable/status' });
   },
 
   on() {
-    return request('/api/turntable/start');
+    return request({ url: '/api/turntable/start' });
   },
 
   off() {
-    return request('/api/turntable/stop');
-  },
+    return request({ url: '/api/turntable/stop' });
+  }
 };
