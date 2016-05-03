@@ -11,5 +11,5 @@ app.listen(config.PORT, '0.0.0.0', err => {
     return;
   }
 
-  console.log('Listening at http://0.0.0,0:3000'); // eslint-disable-line no-console
+  console.log('Listening at http://0.0.0.0:3000'); // eslint-disable-line no-console
 });
