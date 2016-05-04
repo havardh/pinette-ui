@@ -4,8 +4,6 @@ import React from 'react';
 
 import Sound from '../../src/components/sound';
 import { StatusIndicator } from '../../src/components/status';
-import * as SoundActionCreators from '../../src/actions/sound_action_creators';
-
 
 describe('Sound', () => {
   let store;
